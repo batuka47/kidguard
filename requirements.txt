@@ -1,0 +1,38 @@
+# KidGuard training / data-prep / desktop-prototype environment.
+# Works on Windows and Linux (Python 3.11+; tested target: 3.14).
+#
+# torch + torchvision are pinned to one minor version: they must match each
+# other, and the Phase 7 exporter (litert-torch 0.10) requires torch < 2.15.
+# Everything else is pinned to its major version.
+#
+# WINDOWS: install torch/torchvision from the PyTorch CUDA index FIRST
+# (PyPI only has CPU builds for Windows). See README.md.
+
+# --- Deep learning --------------------------------------------------------
+torch>=2.14,<2.15
+torchvision>=0.29,<0.30
+timm>=1.0,<2
+
+# --- Images ---------------------------------------------------------------
+opencv-python>=5.0,<6
+pillow>=13.0,<14
+imagehash>=4.3,<5
+
+# --- Data / metrics -------------------------------------------------------
+numpy>=2.0,<3
+pandas>=3.0,<4
+scikit-learn>=1.9,<2
+matplotlib>=3.11,<4
+tqdm>=4.70,<5
+
+# --- Dataset download -----------------------------------------------------
+huggingface_hub>=2.4,<3
+datasets>=5.0,<6
+kaggle>=2.0,<3
+
+# --- Desktop prototype (screen capture + overlay UI) ----------------------
+mss>=10.0,<11
+PyQt6>=6.12,<7
+
+# --- Export (intermediate format; TFLite export is in requirements-export.txt)
+onnx>=1.23,<2

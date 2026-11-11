@@ -1,0 +1,34 @@
+# ---------------------------------------------------------------------------
+# KidGuard .gitignore
+# Rule: never commit data, weights, tokens or kaggle.json.
+# ---------------------------------------------------------------------------
+
+# --- Data: ignore everything under data/ ---------------------------------
+# Only the empty folder skeleton (.gitkeep) and data/metadata.csv are tracked.
+# Before committing metadata.csv, follow the filename rule in CLAUDE.md.
+data/**
+!data/**/
+!data/**/.gitkeep
+!data/metadata.csv
+
+# --- Model weights / exports ---------------------------------------------
+models/**
+!models/**/
+!models/**/.gitkeep
+*.pt
+*.pth
+*.onnx
+*.tflite
+*.zip
+
+# --- Secrets ---------------------------------------------------------------
+.env
+.env.*
+kaggle.json
+
+# --- Python / virtual environments ----------------------------------------
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/

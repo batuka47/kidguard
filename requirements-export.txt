@@ -1,0 +1,26 @@
+# KidGuard PyTorch -> TFLite export environment.  Install ONLY in Phase 7.
+#
+# LINUX / COLAB / WSL2 ONLY. litert-torch depends on litert-converter, which
+# ships no Windows wheels, so this cannot be installed on native Windows.
+# Python: use 3.12 on WSL2 (3.11-3.14 all have wheels; see README.md).
+#
+# Converter: litert-torch (Google's official PyTorch -> .tflite converter).
+# It is the renamed successor of ai-edge-torch, which is deprecated and no
+# longer updated. Import name: `import litert_torch`.
+#
+# Use a fresh environment (e.g. a new Colab runtime). The torch pin matches
+# requirements.txt so the trained weights load in the same torch version;
+# on Colab this may downgrade the preinstalled torch, which is expected.
+
+torch>=2.14,<2.15
+torchvision>=0.29,<0.30
+timm>=1.0,<2
+numpy>=2.0,<3
+pillow>=13.0,<14
+
+# Converter (0.x releases: pinned to minor version)
+litert-torch>=0.10,<0.11
+
+# TFLite runtime, used to run the exported .tflite and check it matches the
+# PyTorch model's outputs. litert-torch 0.10 requires ai-edge-litert 2.3.x.
+ai-edge-litert>=2.3,<2.4
