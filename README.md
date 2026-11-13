@@ -17,10 +17,10 @@ python -m pip install --upgrade pip
 
 # 1) torch + torchvision with CUDA 13.0 (PyPI only has CPU builds for Windows).
 #    cu130 is needed for RTX 50-series (Blackwell) GPUs.
-pip install "torch>=2.14,<2.15" "torchvision>=0.29,<0.30" --index-url https://download.pytorch.org/whl/cu130
+python -m pip install "torch>=2.14,<2.15" "torchvision>=0.29,<0.30" --index-url https://download.pytorch.org/whl/cu130
 
 # 2) everything else
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 
 # 3) check
 python scripts\check_env.py
@@ -28,6 +28,12 @@ python scripts\check_env.py
 
 If `Activate.ps1` is blocked, run this once:
 `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
+
+**Always use `python -m <tool>`, not `<tool>.exe`, on Windows.** With
+Windows 11 Smart App Control on, the unsigned launchers in `venv\Scripts\`
+(`pip.exe`, `jupyter.exe`, `kaggle.exe`, `hf.exe`, ...) are blocked with
+"An Application Control policy has blocked this file". `python.exe` is signed,
+so `python -m pip ...` works.
 
 ### Linux
 
