@@ -91,6 +91,24 @@ python prototype\eval_folder.py prototype\test_images --violence-backend both
 Settings (fps, thresholds, violence backend `vit` or `clip`) are in
 `prototype/config.yaml`. Every decision is logged to `reports/prototype_log.csv`.
 
+## Phase 2: datasets
+
+```powershell
+python scripts\download.py status            # what is downloaded
+python scripts\download.py rlvs              # Kaggle, videos
+python scripts\download.py rico --limit 20000
+python scripts\inventory.py                  # counts per label folder -> reports\inventory.md
+```
+
+`nsfw_detect` and `unsafebench` contain adult content, so only the data keeper
+runs them (CLAUDE.md). Manual datasets (`adult_content`, `npdi`, `fs_lspd`):
+run the subcommand without arguments for instructions, then place the archive
+with `--from-zip`. Original labels are mapped to our classes in
+`scripts/label_map.yaml`.
+
+Not used: WVD (GTA V footage; game violence is safe in our policy), RWF-2000
+(withdrawn by its authors), Movies/Hockey Fight (official page offline).
+
 ## Kaggle
 
 Put your `kaggle.json` in `~/.kaggle/` (Windows: `C:\Users\<you>\.kaggle\`),

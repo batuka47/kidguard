@@ -1,0 +1,65 @@
+# Original label -> KidGuard class.
+#
+# Our classes: safe, nudity, violence, gore. Use "drop" to exclude a folder.
+# Keys are matched against the name of each label folder (a folder that
+# directly contains files) inside data/raw/<dataset>/. Glob patterns work;
+# "*" is the fallback for a dataset. Exact names win over patterns.
+#
+# sensitive: true  -> the dataset contains nudity. inventory.py never prints
+#                     descriptive file names from it (CLAUDE.md).
+#
+# Removed on purpose: wvd (GTA V footage; game violence is safe in our policy),
+# rwf2000 (no longer distributed by the authors; no mirrors).
+
+datasets:
+  rlvs:
+    sensitive: false
+    labels:
+      Violence: violence
+      NonViolence: safe
+
+  nsfw_detect:
+    sensitive: true
+    labels:
+      porn: nudity
+      hentai: nudity
+      sexy: nudity
+      neutral: safe
+      drawing: safe
+
+  adult_content:
+    sensitive: true
+    labels:
+      adult: nudity
+      safe: safe
+
+  unsafebench:
+    sensitive: true
+    # download.py exports images into "<safety_label>__<category>" folders.
+    labels:
+      Unsafe__Sexual: nudity
+      Unsafe__Violence: gore
+      Unsafe__Shocking: gore
+      "Safe__*": safe
+      "*": drop
+
+  rico:
+    sensitive: false
+    labels:
+      "*": safe
+
+  # Phase 1 prototype test screenshots (labels in prototype/test_labels.csv).
+  # Test data only - never used for training.
+  test_images_drive:
+    sensitive: true
+    labels:
+      "*": drop
+
+  # Manual datasets: fill in the labels when the data arrives.
+  npdi:
+    sensitive: true
+    labels: {}
+
+  fs_lspd:
+    sensitive: true
+    labels: {}
