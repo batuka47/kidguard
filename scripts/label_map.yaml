@@ -25,13 +25,16 @@ datasets:
       hentai: nudity
       sexy: nudity
       neutral: safe
-      drawing: safe
+      drawings: safe            # real folder name is plural
 
   adult_content:
     sensitive: true
+    # The zip has no README. Folder "1" scored low on the Falconsai nudity
+    # model (mean 0.03) and "2" high (mean 0.75); the data keeper viewed 10
+    # random images from "1" and confirmed all safe (2026-11-13).
     labels:
-      adult: nudity
-      safe: safe
+      "1": safe
+      "2": nudity
 
   unsafebench:
     sensitive: true

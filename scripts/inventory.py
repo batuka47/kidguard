@@ -25,7 +25,8 @@ from pathlib import Path
 import yaml
 
 NEUTRAL_WORDS = {"img", "image", "images", "frame", "photo", "pic", "dsc", "dscn", "screenshot",
-                 "file", "train", "test", "val", "copy", "jpg", "jpeg", "png"}
+                 "file", "train", "test", "val", "copy", "jpg", "jpeg", "png",
+                 "master"}  # Pixiv-style "<id>_p0_master1200"
 
 
 def is_neutral(filename: str) -> bool:
