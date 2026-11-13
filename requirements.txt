@@ -20,7 +20,9 @@ imagehash>=4.3,<5
 
 # --- Data / metrics -------------------------------------------------------
 numpy>=2.0,<3
-pandas>=3.0,<4
+# Smart App Control blocks the pandas 3.1.x DLLs (2026-11-13); 3.0.6 loads.
+# Remove this cap once a fresh install of the latest pandas imports fine.
+pandas>=3.0,<3.1
 scikit-learn>=1.9,<2
 matplotlib>=3.11,<4
 tqdm>=4.70,<5

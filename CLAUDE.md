@@ -10,7 +10,8 @@ RTX 5070 Ti) or Colab. Built by two university students in Mongolia.
 ### Classes and labels
 - Exactly four classes: `safe`, `nudity`, `violence`, `gore`.
 - Labels live in `data/metadata.csv` with columns:
-  `path,label,source,group_id,split`
+  `path,label,source,group_id,split,orig_label`
+  (`orig_label` = the dataset's own label folder, e.g. `porn`, `Safe__Sexual`).
 
 ### Data sourcing
 - NEVER scrape or download adult/explicit content from websites. Only use the

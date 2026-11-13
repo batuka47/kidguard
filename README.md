@@ -109,6 +109,22 @@ with `--from-zip`. Original labels are mapped to our classes in
 Not used: WVD (GTA V footage; game violence is safe in our policy), RWF-2000
 (withdrawn by its authors), Movies/Hockey Fight (official page offline).
 
+## Phase 3: frames + cleaning
+
+Run in this order (each script has `--dry-run`):
+
+```powershell
+python scripts\extract_frames.py    # video -> frames (1/s, max 8, middle 80%)
+python scripts\import_images.py     # image datasets -> data\interim\images\<class>\
+python scripts\clean_basic.py       # reject broken/tiny/flat; RGB JPEG, long side <= 512
+python scripts\dedup.py             # phash: label conflicts, duplicates
+python scripts\rename_to_hash.py    # Pixiv-ID names -> content hashes (before committing metadata.csv)
+python scripts\stats.py             # -> reports\stats.md
+```
+
+Labels end up in `data/metadata.csv` (`path,label,source,group_id,split,orig_label`).
+Rejected files are moved to `data\interim\rejected\<reason>\`, never deleted.
+
 ## Kaggle
 
 Put your `kaggle.json` in `~/.kaggle/` (Windows: `C:\Users\<you>\.kaggle\`),
