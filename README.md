@@ -75,6 +75,22 @@ pip install -r requirements-export.txt
 
 On Colab, use the runtime's Python and run `pip install -r requirements-export.txt`.
 
+## Phase 1: desktop prototype
+
+Pretrained models only (no training yet). The first run downloads about 1.3 GB
+of models into the Hugging Face cache, outside this repo.
+
+```powershell
+# live: screen -> detector -> blur/block overlay; quit with Ctrl+Shift+Q
+python prototype\main.py
+
+# score the detector on prototype\test_images\<class>\ with both violence options
+python prototype\eval_folder.py prototype\test_images --violence-backend both
+```
+
+Settings (fps, thresholds, violence backend `vit` or `clip`) are in
+`prototype/config.yaml`. Every decision is logged to `reports/prototype_log.csv`.
+
 ## Kaggle
 
 Put your `kaggle.json` in `~/.kaggle/` (Windows: `C:\Users\<you>\.kaggle\`),

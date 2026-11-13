@@ -33,6 +33,17 @@ kaggle>=2.0,<3
 # --- Desktop prototype (screen capture + overlay UI) ----------------------
 mss>=10.0,<11
 PyQt6>=6.12,<7
+# Smart App Control blocks the 2-day-old PyQt6-sip 13.13.1 DLL (2026-11-13);
+# 13.13.0 loads. Remove this cap once a newer sip imports fine.
+PyQt6-sip>=13.11,<13.13.1
+pyyaml>=6.0,<7
+
+# --- Pretrained models for the Phase 1 prototype ---------------------------
+transformers>=5.22,<6
+# regex is a transformers dependency. Windows Smart App Control on our laptop
+# blocks the newest regex DLL (2026.11.x is too new to have a reputation).
+# Remove this cap once a fresh install of the latest regex imports fine.
+regex>=2025.10.22,<2026.11
 
 # --- Export (intermediate format; TFLite export is in requirements-export.txt)
 onnx>=1.23,<2

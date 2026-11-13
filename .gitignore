@@ -11,6 +11,10 @@ data/**
 !data/**/.gitkeep
 !data/metadata.csv
 
+# Prototype test images are data too; the runtime log is regenerated.
+prototype/test_images/
+reports/prototype_log.csv
+
 # --- Model weights / exports ---------------------------------------------
 models/**
 !models/**/

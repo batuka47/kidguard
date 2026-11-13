@@ -1,0 +1,40 @@
+# KidGuard Phase 1 desktop prototype settings.
+
+capture:
+  fps: 1.0                  # frames grabbed per second
+  monitor: 1                # mss monitor index (1 = primary monitor)
+  phash_skip_distance: 4    # skip a frame if its phash differs from the last
+                            # analysed frame by <= this (screen did not change)
+
+detector:
+  device: auto              # auto | cuda | cpu
+  nsfw_model: Falconsai/nsfw_image_detection
+
+  violence_backend: vit     # vit | clip  (eval_folder.py can compare both)
+  vit_violence_model: jaranohaal/vit-base-violence-detection
+  # The checkpoint has no label names. Index 1 = violence, checked on
+  # prototype/test_images (mean p(index 1): violence 0.66, safe 0.19, gore 0.12).
+  vit_violence_index: 1
+
+  clip_model: openai/clip-vit-base-patch32
+  # Zero-shot CLIP: softmax over all prompts below; a class's probability is
+  # the sum over its prompts. Gore always comes from CLIP; violence comes from
+  # CLIP only when violence_backend is "clip".
+  clip_prompts:
+    violence: ["a photo of people fighting"]
+    gore: ["a photo of blood and injuries"]
+    safe: ["a normal photo", "a cartoon", "a video game screenshot"]
+
+decision:
+  blur_threshold: 0.5       # max unsafe prob < this -> frame counts as safe
+  block_threshold: 0.8      # unsafe frames in the window average > this -> block
+  window: 5                 # sliding window of analysed frames
+  trigger_count: 3          # act when >= this many of the window are unsafe
+  clear_count: 3            # clear after this many safe frames in a row
+
+overlay:
+  block_text: "Tokhiromjgui kontent ilerlee"
+  blur_radius: 12           # Gaussian radius on a 320 px wide copy (heavy blur)
+
+log:
+  path: reports/prototype_log.csv
